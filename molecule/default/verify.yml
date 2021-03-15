@@ -1,0 +1,22 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Copy sample test data.
+      copy:
+        src: tests
+        dest: ./
+
+    - name: Run sample tests.
+      command: 'robot tests'
+      register: robot_results
+      changed_when: false
+
+    #- debug:
+    #    var: robot_results
+
+    - assert:
+        that:
+          - not robot_results.failed
+          - robot_results.rc == 0
+          - robot_results.stderr | count == 0

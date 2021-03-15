@@ -1,0 +1,5 @@
+---
+- name: Ensure python pip is installed.
+  apt:
+    state: present
+    name: python3-pip
