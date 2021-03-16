@@ -1,0 +1,20 @@
+---
+- name: Wait for instances
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Waiting for system to start
+      wait_for_connection:
+
+- name: Setup selinux mode
+  hosts: all
+  tasks:
+    - name: Configure selinux mode
+      become: yes
+      selinux:
+        policy: targeted
+        state: "permissive"
+      when:
+        - ansible_selinux is defined
+        - ansible_selinux.status is defined
+        - ansible_selinux.status == 'enabled'
