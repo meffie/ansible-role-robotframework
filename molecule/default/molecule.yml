@@ -6,7 +6,7 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: "${MOLECULE_IMAGE:-centos:8}"
+    image: "${IMAGE:-centos:8}"
 provisioner:
   name: ansible
   inventory:
