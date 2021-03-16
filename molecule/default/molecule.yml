@@ -1,6 +1,7 @@
 ---
 dependency:
   name: galaxy
+  enabled: false
 driver:
   name: docker
 platforms:
@@ -8,5 +9,11 @@ platforms:
     image: "${MOLECULE_IMAGE:-centos:8}"
 provisioner:
   name: ansible
-  playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+  inventory:
+    group_vars:
+      all:
+        #robotframework_package_name: robotframework
+        #robotframework_package_version_spec: ""
+        #robotframework_external_libraries: []
+        robotframework_test_directory: "tests"
+        robotframework_test_data: ["tests"]

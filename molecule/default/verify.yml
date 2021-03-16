@@ -2,13 +2,8 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: Copy sample test data.
-      copy:
-        src: tests
-        dest: ./
-
     - name: Run sample tests.
-      command: 'robot tests'
+      command: robot tests
       register: robot_results
       changed_when: false
 
