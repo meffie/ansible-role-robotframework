@@ -3,12 +3,12 @@
   hosts: all
   tasks:
     - name: Run sample tests.
-      command: robot tests
+      command: robot hello.robot
       register: robot_results
       changed_when: false
 
-    #- debug:
-    #    var: robot_results
+    - debug:
+        var: robot_results
 
     - assert:
         that:

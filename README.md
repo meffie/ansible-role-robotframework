@@ -1,13 +1,14 @@
 # Ansible Role: Robot Framework
 
-Installs the [Robot Framework](https://robotframework.org) test automation
-framework, and optionally one or more external test libraries and directories
-of test sources.
+Install the [Robot Framework](https://robotframework.org) test automation
+framework, and optionally, one or more external test libraries.
 
-This role will install Robot Framework with ``pip``.
+This role will install Robot Framework with ``pip``. ``pip`` will be
+installed if not already present. The EPEL repository will be installed on
+RHEL/CentOS distributions in order to install ``pip``.
 
-``pip`` will be installed if not already present. The EPEL repository will be
-installed on RHEL/CentOS distributions in order to install ``pip``.
+After importing this role, copy your test data and resources on the server,
+the execute ``robot`` to run tests.
 
 ## Requirements
 
@@ -32,21 +33,6 @@ is not already present.
 A list of external Robot Framework libraries to be installed via `pip`. The
 default list is empty.
 
-    robotframework_test_directory
-
-Destination directory to copy test data. The directory will be created if it does
-not exist. The directory will be created and owned by the current `ansible_user`.
-The default directory is '.' (the current working directory).
-
-    robotframework_test_data
-
-A list of paths on the controller to directories containing Robot Framework
-test data (that is *.robot files) to be copied to
-`robotframework_test_directory`. The default value is an empty list.
-
-Note: If your test data resides in `git`, consider adding a `git` task to
-your playbook to checkout the files on the managed host.
-
 ## Dependencies
 
 None
@@ -54,11 +40,16 @@ None
 ## Example Playbook
 
     - hosts: testers
-      vars:
-        robotframework_test_data:
-          - /path/to/my/tests/on/the/controller
       roles:
         - robotframework
+      tasks:
+        - name: Copy test data
+          copy:
+            src: /path/to/tests/on/controller
+            src: /path/to/my/test/data/
+
+        - name: Run tests
+          command: robot /path/to/my/test/data
 
 ## License
 

@@ -9,11 +9,5 @@ platforms:
     image: "${IMAGE:-centos:8}"
 provisioner:
   name: ansible
-  inventory:
-    group_vars:
-      all:
-        #robotframework_package_name: robotframework
-        #robotframework_package_version_spec: ""
-        #robotframework_external_libraries: []
-        robotframework_test_directory: "tests"
-        robotframework_test_data: ["tests"]
+  env:
+    ANSIBLE_STDOUT_CALLBACK: yaml

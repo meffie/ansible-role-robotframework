@@ -20,18 +20,3 @@
     state: present
     name: "{{ robotframework_external_libraries }}"
   when: robotframework_external_libraries | count > 1
-
-- name: Ensure Robot Framework test data destination directory exists.
-  file:
-    state: directory
-    path: "{{ robotframework_test_directory }}"
-    mode: "755"
-  when: robotframework_test_directory != '.'
-
-- name: Copy Robot Framework test data.
-  copy:
-    src: "{{ test_data }}/"
-    dest: "{{ robotframework_test_directory }}/"
-  loop: "{{ robotframework_test_data }}"
-  loop_control:
-    loop_var: test_data

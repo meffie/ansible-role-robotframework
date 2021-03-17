@@ -4,3 +4,8 @@
   tasks:
     - import_role:
         name: robotframework
+
+    - name: Copy example test data
+      copy:
+        src: tests/hello.robot
+        dest: .
