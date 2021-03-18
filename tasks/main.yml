@@ -19,4 +19,4 @@
   pip:
     state: present
     name: "{{ robotframework_external_libraries }}"
-  when: robotframework_external_libraries | count > 1
+  when: robotframework_external_libraries | count > 0
