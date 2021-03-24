@@ -1,13 +1,14 @@
 ---
 dependency:
   name: galaxy
-  enabled: false
 driver:
   name: docker
 platforms:
   - name: instance
     image: "${IMAGE:-centos:8}"
+    template: "${IMAGE:-generic-centos-8}"
 provisioner:
   name: ansible
   env:
+    ANSIBLE_VERBOSITY: 0
     ANSIBLE_STDOUT_CALLBACK: yaml
