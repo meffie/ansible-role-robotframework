@@ -3,4 +3,5 @@
   become: yes
   apt:
     state: present
+    update_cache: yes
     name: python3-pip
