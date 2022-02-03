@@ -1,8 +1,9 @@
 ---
+#
+# Put driver config in <projectdir>/.config/molecule/config.yml
+#
 dependency:
   name: galaxy
-driver:
-  name: docker
 platforms:
   - name: instance
     image: "${IMAGE:-centos:8}"
